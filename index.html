@@ -72,6 +72,13 @@
     animation: rise 900ms 80ms ease-out both;
   }
   .wordmark .o { font-style: italic; color: var(--beam); }
+  .lead {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    font-size: clamp(1.35rem, 3.2vw, 2rem); line-height: 1.35;
+    color: var(--ink); margin: 22px auto 0; max-width: 22ch;
+    animation: rise 900ms 140ms ease-out both;
+  }
+  .lead em { font-style: italic; color: var(--beam); }
   .lema {
     font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; letter-spacing: 0.04em;
     color: var(--muted); margin: 18px auto 0; max-width: 34ch; animation: rise 900ms 160ms ease-out both;
@@ -139,6 +146,8 @@
 
   /* ---------- Footer ---------- */
   footer { border-top: 1px solid var(--line); margin-top: 4vh; padding: 5vh 0 7vh; text-align: center; }
+  .foot-author { font-size: 0.9rem; color: var(--muted); margin: 0 0 24px; }
+  .foot-author b { color: var(--ink); font-weight: 500; }
   .sig { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--muted); white-space: pre; display: inline-block; text-align: left; line-height: 1.5; margin: 0 0 22px; }
   .sig b { color: var(--beam); font-weight: 500; }
   .foot-links { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); }
@@ -160,12 +169,12 @@
   <header class="hero">
     <img class="mark" src="assets/pharos.svg" alt="Pharos" />
     <h1 class="wordmark">PHAR<span class="o">O</span>S</h1>
-    <p class="lema" data-i18n="lema">infraestructura científica y educativa<br/>sin barreras de entrada</p>
-    <p class="by" data-i18n="by">por <b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso</p>
+    <p class="lead" data-i18n="lead">La física debería <em>verse</em>, no solo leerse.</p>
+    <p class="lema" data-i18n="lema">infraestructura científica y educativa sin barreras de entrada</p>
   </header>
 
   <div class="manifesto">
-    <p data-i18n="manifesto">La física debería <em>verse</em>, no solo leerse. Construyo herramientas abiertas que cualquiera puede tocar y entender — del colegio a la investigación.</p>
+    <p data-i18n="manifesto">Herramientas abiertas que cualquiera puede tocar y entender — del colegio a la investigación.</p>
   </div>
 
   <section class="stratum" id="didactico">
@@ -212,7 +221,7 @@
       <a class="card live" style="--c:#fb923c" href="https://github.com/kegouro/spmkit">
         <div class="card-top"><span class="card-name"><span class="dot"></span>spmkit</span><span class="badge live" data-i18n="b.live">Vivo</span></div>
         <p class="card-desc" data-i18n="d.spmkit">Análisis de datos AFM/KPFM para microscopía de sonda de barrido. Validado contra Gwyddion.</p>
-        <div class="card-meta"><span class="stack">Python · web</span><span class="links"><a href="https://github.com/kegouro/spmkit">repo</a></span></div>
+        <div class="card-meta"><span class="stack">Python · web</span><span class="links"><a href="https://kegouro.github.io/spmkit/">docs</a><span>/</span><a href="https://github.com/kegouro/spmkit">repo</a></span></div>
       </a>
 
       <a class="card soon" style="--c:#a78bfa" href="https://github.com/kegouro/virtualspm">
@@ -264,6 +273,7 @@
   </section>
 
   <footer>
+    <p class="foot-author" data-i18n="author"><b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso</p>
     <div class="sig">┌─
 │ <b>Pharos Project</b>
 │ José Labarca Baeza
@@ -278,9 +288,10 @@
 <script>
   const I18N = {
     es: {
-      lema: 'infraestructura científica y educativa<br>sin barreras de entrada',
-      by: 'por <b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso',
-      manifesto: 'La física debería <em>verse</em>, no solo leerse. Construyo herramientas abiertas que cualquiera puede tocar y entender — del colegio a la investigación.',
+      lead: 'La física debería <em>verse</em>, no solo leerse.',
+      lema: 'infraestructura científica y educativa sin barreras de entrada',
+      manifesto: 'Herramientas abiertas que cualquiera puede tocar y entender — del colegio a la investigación.',
+      author: '<b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso',
       's.didactic': 'Didáctico', 't.didactic': 'web · visual · accesible',
       's.instr': 'Instrumentación', 't.instr': 'python · laboratorio',
       's.sim': 'Simulación', 't.sim': 'c++ · investigación',
@@ -299,9 +310,10 @@
       'd.pagina': 'pagina-web — material para clases online',
     },
     en: {
-      lema: 'scientific and educational infrastructure<br>with no barriers to entry',
-      by: 'by <b>José Labarca Baeza</b> · BSc Physics · USM, Valparaíso, Chile',
-      manifesto: 'Physics should be <em>seen</em>, not just read. I build open tools anyone can touch and understand — from school to research.',
+      lead: 'Physics should be <em>seen</em>, not just read.',
+      lema: 'scientific and educational infrastructure with no barriers to entry',
+      manifesto: 'Open tools anyone can touch and understand — from school to research.',
+      author: '<b>José Labarca Baeza</b> · BSc Physics · USM, Valparaíso, Chile',
       's.didactic': 'Didactic', 't.didactic': 'web · visual · accessible',
       's.instr': 'Instrumentation', 't.instr': 'python · lab',
       's.sim': 'Simulation', 't.sim': 'c++ · research',
