@@ -1,0 +1,37 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;}
+  .banner{
+    width:1280px;height:320px;position:relative;overflow:hidden;
+    background:#0a0908;
+    font-family:'IBM Plex Mono',monospace;color:#efe7d8;
+    display:flex;align-items:center;gap:48px;padding:0 72px;box-sizing:border-box;
+  }
+  .banner::before{content:"";position:absolute;left:-5%;top:-60%;width:60%;height:220%;
+    background:radial-gradient(50% 50% at 30% 50%, rgba(245,167,44,0.16), transparent 70%);}
+  .mark{width:118px;height:118px;flex-shrink:0;filter:drop-shadow(0 0 26px rgba(245,167,44,0.4));position:relative;z-index:1;}
+  .col{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;}
+  .word{font-family:'Fraunces',serif;font-weight:500;font-size:84px;letter-spacing:0.16em;line-height:0.9;margin:0;}
+  .word .o{font-style:italic;color:#f5a72c;}
+  .sub{font-size:18px;letter-spacing:0.05em;color:#9a8a76;}
+  .jlb{margin-left:auto;position:relative;z-index:1;text-align:right;}
+  .jlb .by{font-size:20px;color:#9a8a76;letter-spacing:0.08em;}
+  .jlb .initials{font-family:'Fraunces',serif;font-weight:500;font-size:72px;color:#ff7a3c;letter-spacing:0.08em;line-height:1;}
+  .rule{position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#f5a72c,#ff7a3c 60%,transparent);}
+</style></head>
+<body>
+<div class="banner">
+  <img class="mark" src="pharos.svg" alt="">
+  <div class="col">
+    <div class="word">PHAR<span class="o">O</span>S</div>
+    <div class="sub">infraestructura científica y educativa · sin barreras</div>
+  </div>
+  <div class="jlb">
+    <div class="by">by</div>
+    <div class="initials">JLB</div>
+  </div>
+  <div class="rule"></div>
+</div>
+</body></html>
