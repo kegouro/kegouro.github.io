@@ -13,129 +13,116 @@
 <meta name="theme-color" content="#0a0908" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --night: #0a0908;      /* negro cálido (noche) */
+    --night: #0a0908;
     --night-2: #100d0b;
-    --panel: #15110d;      /* carbón cálido */
+    --panel: #15110d;
     --line: #2a2118;
-    --ink: #efe7d8;        /* tinta cálida */
-    --muted: #9a8a76;      /* sepia tenue */
-    --beam: #f5a72c;       /* haz del faro (ámbar) */
-    --beam-soft: #ffd690;  /* oro / brillo */
-    --ember: #ff7a3c;      /* brasa (acento cálido secundario) */
+    --ink: #efe7d8;
+    --muted: #9a8a76;
+    --beam: #f5a72c;
+    --beam-soft: #ffd690;
+    --ember: #ff7a3c;
     --radius: 14px;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    margin: 0;
-    background: var(--night);
-    color: var(--ink);
-    font-family: 'Inter', system-ui, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    margin: 0; background: var(--night); color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
 
-  /* haz de luz tenue descendiendo desde el faro */
   body::before {
-    content: "";
-    position: fixed;
-    top: -10vh; left: 50%;
-    width: 120vw; height: 80vh;
-    transform: translateX(-50%);
+    content: ""; position: fixed; top: -10vh; left: 50%;
+    width: 120vw; height: 80vh; transform: translateX(-50%);
     background: radial-gradient(60% 70% at 50% 0%, rgba(245,167,44,0.10), transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
   .wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 28px; }
 
-  /* ---------- Eje/haz vertical que une los estratos ---------- */
+  /* ---------- Toggle de idioma (esquina) ---------- */
+  .lang {
+    position: fixed; top: 18px; right: 20px; z-index: 10;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; letter-spacing: 0.08em;
+    color: var(--muted); background: rgba(21,17,13,0.7); border: 1px solid var(--line);
+    border-radius: 20px; padding: 6px 13px; cursor: pointer; backdrop-filter: blur(4px);
+    transition: color .15s, border-color .15s;
+  }
+  .lang:hover { color: var(--beam); border-color: var(--beam); }
+
+  /* ---------- Eje/haz vertical ---------- */
   .beam-axis {
-    position: absolute;
-    left: 50%; top: 0; bottom: 0;
-    width: 1px;
+    position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
     background: linear-gradient(180deg, var(--beam) 0%, rgba(245,167,44,0.25) 22%, var(--line) 60%, transparent 100%);
     z-index: 0;
   }
   @media (max-width: 760px) { .beam-axis { left: 28px; } }
 
   /* ---------- Hero ---------- */
-  .hero { text-align: center; padding: 12vh 0 7vh; position: relative; }
+  .hero { text-align: center; padding: 12vh 0 4vh; position: relative; }
   .hero .mark { width: 78px; height: 78px; margin: 0 auto 22px; display: block; filter: drop-shadow(0 0 22px rgba(245,167,44,0.35)); animation: rise 900ms ease-out both; }
   .wordmark {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(3.2rem, 11vw, 6.4rem);
-    letter-spacing: 0.14em;
-    margin: 0;
-    line-height: 0.95;
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: clamp(3.2rem, 11vw, 6.4rem); letter-spacing: 0.14em; margin: 0; line-height: 0.95;
     animation: rise 900ms 80ms ease-out both;
   }
   .wordmark .o { font-style: italic; color: var(--beam); }
   .lema {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    margin: 18px auto 0;
-    max-width: 30ch;
-    animation: rise 900ms 160ms ease-out both;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; letter-spacing: 0.04em;
+    color: var(--muted); margin: 18px auto 0; max-width: 34ch; animation: rise 900ms 160ms ease-out both;
   }
-  .by {
-    margin-top: 26px;
-    font-size: 0.9rem;
-    color: var(--muted);
-    animation: rise 900ms 240ms ease-out both;
-  }
+  .by { margin-top: 22px; font-size: 0.9rem; color: var(--muted); animation: rise 900ms 240ms ease-out both; }
   .by b { color: var(--ink); font-weight: 500; }
+
+  /* ---------- Manifiesto ---------- */
+  .manifesto {
+    max-width: 50ch; margin: 2vh auto 6vh; text-align: center; position: relative;
+    padding-top: 30px;
+  }
+  .manifesto::before {
+    content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 38px; height: 2px; background: linear-gradient(90deg, var(--beam), var(--ember));
+  }
+  .manifesto p {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.5; color: var(--ink); margin: 0;
+  }
+  .manifesto em { font-style: italic; color: var(--beam); }
 
   /* ---------- Estratos ---------- */
   .stratum { padding: 5vh 0; position: relative; }
   .stratum-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
-  .stratum-name {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: clamp(1.5rem, 3.6vw, 2.1rem);
-    margin: 0;
-    letter-spacing: 0.01em;
-  }
+  .stratum-name { font-family: 'Fraunces', serif; font-weight: 500; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0; letter-spacing: 0.01em; }
   .stratum-tags { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; }
   .stratum-tags::before { content: "· "; color: var(--beam); }
 
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
   @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
 
-  /* ---------- Tarjeta-proyecto (cada uno es un "haz" de su color) ---------- */
+  /* ---------- Tarjeta-proyecto ---------- */
   .card {
-    position: relative;
-    display: block;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--c, var(--beam));
-    border-radius: var(--radius);
-    padding: 18px 20px;
+    position: relative; display: block; background: var(--panel);
+    border: 1px solid var(--line); border-left: 3px solid var(--c, var(--beam));
+    border-radius: var(--radius); padding: 18px 20px;
     transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
   }
-  .card:hover { transform: translateY(-3px); background: #121a2e; border-color: #2a3a5c; }
-  .card.live:hover { border-left-color: var(--c); box-shadow: 0 0 0 1px var(--c), 0 12px 30px rgba(0,0,0,0.4); }
-  .card.soon { opacity: 0.62; border-style: dashed; }
+  .card:hover { transform: translateY(-3px); background: #1c160f; border-color: #3a2c1c; }
+  .card.live:hover { border-left-color: var(--c); box-shadow: 0 0 0 1px var(--c), 0 12px 30px rgba(0,0,0,0.45); }
+  .card.soon { opacity: 0.6; border-style: dashed; }
   .card.soon:hover { opacity: 0.85; transform: none; }
 
   .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
   .card-name { font-family: 'IBM Plex Mono', monospace; font-size: 1.06rem; font-weight: 500; color: var(--ink); }
   .card-name .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--beam)); margin-right: 9px; vertical-align: middle; }
-  .badge {
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 20px; white-space: nowrap;
-  }
+  .badge { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; white-space: nowrap; }
   .badge.live { color: var(--night); background: var(--c, var(--beam)); }
   .badge.soon { color: var(--muted); border: 1px solid var(--line); }
-  .card-desc { font-size: 0.92rem; color: #c3c8d6; margin: 0 0 12px; }
+  .card-desc { font-size: 0.92rem; color: #cdc4b3; margin: 0 0 12px; }
   .card-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .stack { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--muted); }
   .links { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; }
@@ -143,25 +130,16 @@
   .links a:hover { text-decoration: underline; }
   .links span { color: var(--line); margin: 0 6px; }
 
-  /* ---------- Atelier (línea compacta) ---------- */
+  /* ---------- Atelier ---------- */
   .atelier { padding: 4vh 0 2vh; }
   .atelier .stratum-head { margin-bottom: 14px; }
   .atelier-list { font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 18px; }
-  .atelier-list a { color: #b7bdcd; }
+  .atelier-list a { color: #b9ac99; }
   .atelier-list a:hover { color: var(--beam); }
 
-  /* ---------- Footer / firma ---------- */
+  /* ---------- Footer ---------- */
   footer { border-top: 1px solid var(--line); margin-top: 4vh; padding: 5vh 0 7vh; text-align: center; }
-  .sig {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    white-space: pre;
-    display: inline-block;
-    text-align: left;
-    line-height: 1.5;
-    margin: 0 0 22px;
-  }
+  .sig { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--muted); white-space: pre; display: inline-block; text-align: left; line-height: 1.5; margin: 0 0 22px; }
   .sig b { color: var(--beam); font-weight: 500; }
   .foot-links { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); }
   .foot-links a:hover { color: var(--ink); }
@@ -175,171 +153,116 @@
 </style>
 </head>
 <body>
+<button class="lang" id="lang" aria-label="Cambiar idioma">EN</button>
 <div class="beam-axis" aria-hidden="true"></div>
 <div class="wrap">
 
-  <!-- ============ HERO ============ -->
   <header class="hero">
     <img class="mark" src="assets/pharos.svg" alt="Pharos" />
     <h1 class="wordmark">PHAR<span class="o">O</span>S</h1>
-    <p class="lema">infraestructura científica y educativa<br/>sin barreras de entrada</p>
-    <p class="by">por <b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso</p>
+    <p class="lema" data-i18n="lema">infraestructura científica y educativa<br/>sin barreras de entrada</p>
+    <p class="by" data-i18n="by">por <b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso</p>
   </header>
 
-  <!-- ============ DIDÁCTICO ============ -->
+  <div class="manifesto">
+    <p data-i18n="manifesto">La física debería <em>verse</em>, no solo leerse. Construyo herramientas abiertas que cualquiera puede tocar y entender — del colegio a la investigación.</p>
+  </div>
+
   <section class="stratum" id="didactico">
     <div class="stratum-head">
-      <h2 class="stratum-name">Didáctico</h2>
-      <span class="stratum-tags">web · visual · accesible</span>
+      <h2 class="stratum-name" data-i18n="s.didactic">Didáctico</h2>
+      <span class="stratum-tags" data-i18n="t.didactic">web · visual · accesible</span>
     </div>
     <div class="grid">
 
       <a class="card live" style="--c:#7c5cff" href="https://github.com/kegouro/parcella">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>parcella</span>
-          <span class="badge live">Vivo</span>
-        </div>
-        <p class="card-desc">Visualizador del elemento diferencial (dl · dS · dV) e integración por regiones. Cálculo multivariable.</p>
-        <div class="card-meta">
-          <span class="stack">TypeScript · WebGL</span>
-          <span class="links"><a href="https://kegouro.github.io/parcella/">demo</a><span>/</span><a href="https://github.com/kegouro/parcella">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>parcella</span><span class="badge live" data-i18n="b.live">Vivo</span></div>
+        <p class="card-desc" data-i18n="d.parcella">Visualizador del elemento diferencial (dl · dS · dV) e integración por regiones. Cálculo multivariable.</p>
+        <div class="card-meta"><span class="stack">TypeScript · WebGL</span><span class="links"><a href="https://kegouro.github.io/parcella/">demo</a><span>/</span><a href="https://github.com/kegouro/parcella">repo</a></span></div>
       </a>
 
       <a class="card live" style="--c:#4ade80" href="https://github.com/kegouro/curvana">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>curvana</span>
-          <span class="badge live">Vivo</span>
-        </div>
-        <p class="card-desc">Simulador de parametrizaciones de curvas 2D/3D, campos escalares y vectoriales, integrales de línea.</p>
-        <div class="card-meta">
-          <span class="stack">TypeScript</span>
-          <span class="links"><a href="https://github.com/kegouro/curvana">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>curvana</span><span class="badge live" data-i18n="b.live">Vivo</span></div>
+        <p class="card-desc" data-i18n="d.curvana">Simulador de parametrizaciones de curvas 2D/3D, campos escalares y vectoriales, integrales de línea.</p>
+        <div class="card-meta"><span class="stack">TypeScript</span><span class="links"><a href="https://github.com/kegouro/curvana">repo</a></span></div>
       </a>
 
       <a class="card soon" style="--c:#f43f5e" href="https://github.com/kegouro/flux">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>flux</span>
-          <span class="badge soon">Próximamente</span>
-        </div>
-        <p class="card-desc">Campos vectoriales y electrodinámica visual, siguiendo la estructura de los textos estándar (Griffiths).</p>
-        <div class="card-meta">
-          <span class="stack">TypeScript · WebGL</span>
-          <span class="links"><a href="https://github.com/kegouro/flux">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>flux</span><span class="badge soon" data-i18n="b.soon">Próximamente</span></div>
+        <p class="card-desc" data-i18n="d.flux">Campos vectoriales y electrodinámica visual, siguiendo la estructura de los textos estándar (Griffiths).</p>
+        <div class="card-meta"><span class="stack">TypeScript · WebGL</span><span class="links"><a href="https://github.com/kegouro/flux">repo</a></span></div>
       </a>
 
       <a class="card soon" style="--c:#2dd4bf" href="https://github.com/kegouro/beamlab-web">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>beamlab-web</span>
-          <span class="badge soon">Próximamente</span>
-        </div>
-        <p class="card-desc">Óptica paraxial: matrices ABCD, trazado de rayos y propagación de haces gaussianos. Del colegio a la universidad.</p>
-        <div class="card-meta">
-          <span class="stack">TypeScript · WebGL</span>
-          <span class="links"><a href="https://github.com/kegouro/beamlab-web">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>beamlab-web</span><span class="badge soon" data-i18n="b.soon">Próximamente</span></div>
+        <p class="card-desc" data-i18n="d.beamweb">Óptica paraxial: matrices ABCD, trazado de rayos y propagación de haces gaussianos. Del colegio a la universidad.</p>
+        <div class="card-meta"><span class="stack">TypeScript · WebGL</span><span class="links"><a href="https://github.com/kegouro/beamlab-web">repo</a></span></div>
       </a>
 
     </div>
   </section>
 
-  <!-- ============ INSTRUMENTACIÓN ============ -->
   <section class="stratum" id="instrumentacion">
     <div class="stratum-head">
-      <h2 class="stratum-name">Instrumentación</h2>
-      <span class="stratum-tags">python · laboratorio</span>
+      <h2 class="stratum-name" data-i18n="s.instr">Instrumentación</h2>
+      <span class="stratum-tags" data-i18n="t.instr">python · laboratorio</span>
     </div>
     <div class="grid">
 
       <a class="card live" style="--c:#fb923c" href="https://github.com/kegouro/spmkit">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>spmkit</span>
-          <span class="badge live">Vivo</span>
-        </div>
-        <p class="card-desc">Análisis de datos AFM/KPFM para microscopía de sonda de barrido. Validado contra Gwyddion.</p>
-        <div class="card-meta">
-          <span class="stack">Python · GUI web</span>
-          <span class="links"><a href="https://github.com/kegouro/spmkit">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>spmkit</span><span class="badge live" data-i18n="b.live">Vivo</span></div>
+        <p class="card-desc" data-i18n="d.spmkit">Análisis de datos AFM/KPFM para microscopía de sonda de barrido. Validado contra Gwyddion.</p>
+        <div class="card-meta"><span class="stack">Python · web</span><span class="links"><a href="https://github.com/kegouro/spmkit">repo</a></span></div>
       </a>
 
       <a class="card soon" style="--c:#a78bfa" href="https://github.com/kegouro/virtualspm">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>virtualspm</span>
-          <span class="badge soon">Próximamente</span>
-        </div>
-        <p class="card-desc">Gemelo digital de un SPM: simula la medición, genera el archivo y lo analiza con spmkit.</p>
-        <div class="card-meta">
-          <span class="stack">Python</span>
-          <span class="links"><a href="https://github.com/kegouro/virtualspm">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>virtualspm</span><span class="badge soon" data-i18n="b.soon">Próximamente</span></div>
+        <p class="card-desc" data-i18n="d.vspm">Gemelo digital de un SPM: simula la medición, genera el archivo y lo analiza con spmkit.</p>
+        <div class="card-meta"><span class="stack">Python</span><span class="links"><a href="https://github.com/kegouro/virtualspm">repo</a></span></div>
       </a>
 
       <a class="card soon" style="--c:#38bdf8" href="https://github.com/kegouro/lablog">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>lablog</span>
-          <span class="badge soon">Próximamente</span>
-        </div>
-        <p class="card-desc">Bitácora de laboratorio con LaTeX nativo en vivo, tablas con fórmulas, figuras y exportación a paper.</p>
-        <div class="card-meta">
-          <span class="stack">TypeScript · KaTeX</span>
-          <span class="links"><a href="https://github.com/kegouro/lablog">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>lablog</span><span class="badge soon" data-i18n="b.soon">Próximamente</span></div>
+        <p class="card-desc" data-i18n="d.lablog">Bitácora de laboratorio con LaTeX nativo en vivo, tablas con fórmulas, figuras y exportación a paper.</p>
+        <div class="card-meta"><span class="stack">TypeScript · KaTeX</span><span class="links"><a href="https://github.com/kegouro/lablog">repo</a></span></div>
       </a>
 
     </div>
   </section>
 
-  <!-- ============ SIMULACIÓN ============ -->
   <section class="stratum" id="simulacion">
     <div class="stratum-head">
-      <h2 class="stratum-name">Simulación</h2>
-      <span class="stratum-tags">c++ · investigación</span>
+      <h2 class="stratum-name" data-i18n="s.sim">Simulación</h2>
+      <span class="stratum-tags" data-i18n="t.sim">c++ · investigación</span>
     </div>
     <div class="grid">
 
       <a class="card live" style="--c:#f5a72c" href="https://github.com/kegouro/BeamLabStudio">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>BeamLab&nbsp;Studio</span>
-          <span class="badge live">Vivo</span>
-        </div>
-        <p class="card-desc">Análisis de trayectorias de haces de partículas. Soporta Geant4, COMSOL y CERN ROOT.</p>
-        <div class="card-meta">
-          <span class="stack">C++ · Geant4 · ROOT</span>
-          <span class="links"><a href="https://github.com/kegouro/BeamLabStudio">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>BeamLab&nbsp;Studio</span><span class="badge live" data-i18n="b.live">Vivo</span></div>
+        <p class="card-desc" data-i18n="d.beam">Análisis de trayectorias de haces de partículas. Soporta Geant4, COMSOL y CERN ROOT.</p>
+        <div class="card-meta"><span class="stack">C++ · Geant4 · ROOT</span><span class="links"><a href="https://github.com/kegouro/BeamLabStudio">repo</a></span></div>
       </a>
 
       <a class="card live" style="--c:#94a3b8" href="https://github.com/kegouro/MuonSimViewer">
-        <div class="card-top">
-          <span class="card-name"><span class="dot"></span>MuonSimViewer</span>
-          <span class="badge live">Vivo</span>
-        </div>
-        <p class="card-desc">Visualizador de trayectorias de muones para datos COMSOL. Predecesor de BeamLab Studio.</p>
-        <div class="card-meta">
-          <span class="stack">C++</span>
-          <span class="links"><a href="https://github.com/kegouro/MuonSimViewer">repo</a></span>
-        </div>
+        <div class="card-top"><span class="card-name"><span class="dot"></span>MuonSimViewer</span><span class="badge live" data-i18n="b.live">Vivo</span></div>
+        <p class="card-desc" data-i18n="d.muon">Visualizador de trayectorias de muones para datos COMSOL. Predecesor de BeamLab Studio.</p>
+        <div class="card-meta"><span class="stack">C++</span><span class="links"><a href="https://github.com/kegouro/MuonSimViewer">repo</a></span></div>
       </a>
 
     </div>
   </section>
 
-  <!-- ============ ATELIER ============ -->
   <section class="atelier" id="atelier">
     <div class="stratum-head">
-      <h2 class="stratum-name" style="font-size:1.3rem;">Atelier</h2>
-      <span class="stratum-tags">experimentos · pruebas de concepto</span>
+      <h2 class="stratum-name" style="font-size:1.3rem;" data-i18n="s.atelier">Atelier</h2>
+      <span class="stratum-tags" data-i18n="t.atelier">experimentos · pruebas de concepto</span>
     </div>
     <div class="atelier-list">
-      <a href="https://github.com/kegouro/Omniconvert">omniconvert — conversor universal de formatos (BFS)</a>
-      <a href="https://github.com/kegouro/Pagina-web">pagina-web — material para clases online</a>
+      <a href="https://github.com/kegouro/Omniconvert" data-i18n="d.omni">omniconvert — conversor universal de formatos (BFS)</a>
+      <a href="https://github.com/kegouro/Pagina-web" data-i18n="d.pagina">pagina-web — material para clases online</a>
     </div>
   </section>
 
-  <!-- ============ FOOTER ============ -->
   <footer>
     <div class="sig">┌─
 │ <b>Pharos Project</b>
@@ -351,5 +274,67 @@
   </footer>
 
 </div>
+
+<script>
+  const I18N = {
+    es: {
+      lema: 'infraestructura científica y educativa<br>sin barreras de entrada',
+      by: 'por <b>José Labarca Baeza</b> · Lic. en Física · USM, Valparaíso',
+      manifesto: 'La física debería <em>verse</em>, no solo leerse. Construyo herramientas abiertas que cualquiera puede tocar y entender — del colegio a la investigación.',
+      's.didactic': 'Didáctico', 't.didactic': 'web · visual · accesible',
+      's.instr': 'Instrumentación', 't.instr': 'python · laboratorio',
+      's.sim': 'Simulación', 't.sim': 'c++ · investigación',
+      's.atelier': 'Atelier', 't.atelier': 'experimentos · pruebas de concepto',
+      'b.live': 'Vivo', 'b.soon': 'Próximamente',
+      'd.parcella': 'Visualizador del elemento diferencial (dl · dS · dV) e integración por regiones. Cálculo multivariable.',
+      'd.curvana': 'Simulador de parametrizaciones de curvas 2D/3D, campos escalares y vectoriales, integrales de línea.',
+      'd.flux': 'Campos vectoriales y electrodinámica visual, siguiendo la estructura de los textos estándar (Griffiths).',
+      'd.beamweb': 'Óptica paraxial: matrices ABCD, trazado de rayos y propagación de haces gaussianos. Del colegio a la universidad.',
+      'd.spmkit': 'Análisis de datos AFM/KPFM para microscopía de sonda de barrido. Validado contra Gwyddion.',
+      'd.vspm': 'Gemelo digital de un SPM: simula la medición, genera el archivo y lo analiza con spmkit.',
+      'd.lablog': 'Bitácora de laboratorio con LaTeX nativo en vivo, tablas con fórmulas, figuras y exportación a paper.',
+      'd.beam': 'Análisis de trayectorias de haces de partículas. Soporta Geant4, COMSOL y CERN ROOT.',
+      'd.muon': 'Visualizador de trayectorias de muones para datos COMSOL. Predecesor de BeamLab Studio.',
+      'd.omni': 'omniconvert — conversor universal de formatos (BFS)',
+      'd.pagina': 'pagina-web — material para clases online',
+    },
+    en: {
+      lema: 'scientific and educational infrastructure<br>with no barriers to entry',
+      by: 'by <b>José Labarca Baeza</b> · BSc Physics · USM, Valparaíso, Chile',
+      manifesto: 'Physics should be <em>seen</em>, not just read. I build open tools anyone can touch and understand — from school to research.',
+      's.didactic': 'Didactic', 't.didactic': 'web · visual · accessible',
+      's.instr': 'Instrumentation', 't.instr': 'python · lab',
+      's.sim': 'Simulation', 't.sim': 'c++ · research',
+      's.atelier': 'Atelier', 't.atelier': 'experiments · proofs of concept',
+      'b.live': 'Live', 'b.soon': 'Soon',
+      'd.parcella': 'Visualizer of the differential element (dl · dS · dV) and integration over regions. Multivariable calculus.',
+      'd.curvana': 'Simulator of 2D/3D curve parametrizations, scalar and vector fields, line integrals.',
+      'd.flux': 'Vector fields and visual electrodynamics, following the structure of standard texts (Griffiths).',
+      'd.beamweb': 'Paraxial optics: ABCD matrices, ray tracing and Gaussian beam propagation. From school to university.',
+      'd.spmkit': 'AFM/KPFM data analysis for scanning probe microscopy. Validated against Gwyddion.',
+      'd.vspm': 'Digital twin of an SPM: simulates the measurement, generates the file, analyzes it with spmkit.',
+      'd.lablog': 'Lab notebook with live native LaTeX, formula tables, figures and paper export.',
+      'd.beam': 'Particle beam trajectory analysis. Supports Geant4, COMSOL and CERN ROOT.',
+      'd.muon': 'Muon trajectory visualizer for COMSOL data. Predecessor of BeamLab Studio.',
+      'd.omni': 'omniconvert — universal file format converter (BFS)',
+      'd.pagina': 'pagina-web — material for online classes',
+    },
+  };
+  const btn = document.getElementById('lang');
+  function apply(lang) {
+    const dict = I18N[lang];
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const k = el.getAttribute('data-i18n');
+      if (dict[k] != null) el.innerHTML = dict[k];
+    });
+    document.documentElement.lang = lang;
+    btn.textContent = lang === 'es' ? 'EN' : 'ES';
+    try { localStorage.setItem('pharos.lang', lang); } catch (e) {}
+  }
+  let lang = 'es';
+  try { lang = localStorage.getItem('pharos.lang') || 'es'; } catch (e) {}
+  apply(lang);
+  btn.addEventListener('click', () => { lang = lang === 'es' ? 'en' : 'es'; apply(lang); });
+</script>
 </body>
 </html>
